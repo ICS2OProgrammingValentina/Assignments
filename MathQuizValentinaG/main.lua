@@ -42,18 +42,20 @@ local userAnswer
 local correctAnswer
 local randomOperator
 
-local YouWin  
+local youWin  
 
-local GameOver
-local WrongSound = audio.loadSound("Sounds/wrongSound.mp3")
-local WrongSoundChannel
+local gameOver
+
 ----------------------------------------------------------------------------------------
 -- SOUNDS
 ----------------------------------------------------------------------------------------
+-- wrong sound
+local wrongSound = audio.loadSound("Sounds/wrong.mp3")
+local wrongSoundChannel
 
-local correctSound = audio.loadSound( "Sounds/correctSound.mp3")
-local correctSoundChannel
-
+-- you win sound
+local youWinSound = audio.loadSound("Sounds/youWin.mp3")
+local youWinSoundChannel
 ----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS 
 ----------------------------------------------------------------------------------------
@@ -90,11 +92,12 @@ local function UpdateLives()
 		heart2.isVisible = false
 	elseif(lives == 0)then
 		heart1.isVisible = false
-		GameOver.isVisible = true
+		gameOver.isVisible = true
 		numericField.isVisible = false
 		questionObject.isVisible = false
 		clockText.isVisible = false
 		pointsObject.isVisible = false
+		youWin.isVisible = false
 	end
 end
 
@@ -160,13 +163,15 @@ local function NumericFieldListener ( event )
 			-- display the points
 			pointsObject.text = "points = " .. startingPoints
 			
-			if ( startingPoints == 1 )then
-				YouWin.isVisible = true
-				GameOver.isVisible = false
+			if ( startingPoints == 5 )then
+				youWin.isVisible = true
+				gameOver.isVisible = false
 				numericField.isVisible = false
 				questionObject.isVisible = false
 				clockText.isVisible = false
 				pointsObject.isVisible = false
+
+				youWinSoundChannel = audio.play(youWinSound)
 			end
 		
 		-- if answer is incorrect
@@ -182,7 +187,7 @@ local function NumericFieldListener ( event )
 		
 			timer.performWithDelay(1000, HideIncorrect)
 
-			WrongSoundChannel = audio.play(correctSound)
+			wrongSoundChannel = audio.play(wrongSound)
 		end
 		event.target.text = ""
 		
@@ -236,16 +241,16 @@ incorrectObject:setTextColor(0/255, 0/255, 0/255)
 incorrectObject.isVisible = false
 
 --display game over
-GameOver = display.newImageRect("Images/GameOver.png", 1350, 900)
-GameOver.isVisible = false
-GameOver.x = 515
-GameOver.y = 400
+gameOver = display.newImageRect("Images/GameOver.png", 1350, 900)
+gameOver.isVisible = false
+gameOver.x = 515
+gameOver.y = 400
 
 -- disply You Win
-YouWin = display.newImageRect("Images/YouWin.png", 1350, 900)
-YouWin.isVisible = false
-YouWin.x = 515
-YouWin.y = 400
+youWin = display.newImageRect("Images/YouWin.png", 1350, 900)
+youWin.isVisible = false
+youWin.x = 515
+youWin.y = 400
 
 
 
