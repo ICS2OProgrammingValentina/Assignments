@@ -66,7 +66,9 @@ local function AskQuestion()
 	randomNumber2 = math.random(1, 20)
 	randomNumber3 = math.random(1, 10)
 	randomNumber4 = math.random(1, 10)
-	randomOperator = math.random(1, 3)
+	randomNumber5 = math.random(1, 100)
+	randomNumber6 = math.random(1, 100)
+	randomOperator = math.random(1, 4)
 	
 	if (randomOperator == 1 ) then 
 		correctAnswer = randomNumber1 + randomNumber2
@@ -76,10 +78,19 @@ local function AskQuestion()
 			
 		correctAnswer = randomNumber1 - randomNumber2
 		questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
+		if ( randomNumber1 < randomNumber2 )then
+			correctAnswer = randomNumber2 - randomNumber1
+			questionObject.text = randomNumber2 .. " - " .. randomNumber1 .. " = "
+		end
 
 	elseif ( randomOperator == 3 ) then
 		correctAnswer = randomNumber3 * randomNumber4
 		questionObject.text = randomNumber3 .. " x " .. randomNumber4 .. " = "
+	
+	elseif ( randomOperator == 4 )then
+		correctAnswer = randomNumber5 / randomNumber6
+		questionObject.text = randomNumber5 .. " ÷ " .. randomNumber6 .. " = "
+
 	end
 end
 
