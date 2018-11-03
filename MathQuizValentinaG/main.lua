@@ -53,9 +53,15 @@ local gameOver
 local wrongSound = audio.loadSound("Sounds/wrong.mp3")
 local wrongSoundChannel
 
+-- end of game sound
+local endGame = audio.loadSound("Sounds/endGame.mp3")
+local endGameChannel
+
 -- you win sound
 local youWinSound = audio.loadSound("Sounds/youWin.mp3")
 local youWinSoundChannel
+
+
 ----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS 
 ----------------------------------------------------------------------------------------
@@ -88,6 +94,7 @@ local function AskQuestion()
 		questionObject.text = randomNumber3 .. " x " .. randomNumber4 .. " = "
 	
 	elseif ( randomOperator == 4 )then
+		randomNumber5 = randomNumber5 - (randomNumber5 % randomNumber6)
 		correctAnswer = randomNumber5 / randomNumber6
 		questionObject.text = randomNumber5 .. " ÷ " .. randomNumber6 .. " = "
 
@@ -109,6 +116,8 @@ local function UpdateLives()
 		clockText.isVisible = false
 		pointsObject.isVisible = false
 		youWin.isVisible = false
+
+		endGameChannel = audio.play(endGame)
 	end
 end
 
