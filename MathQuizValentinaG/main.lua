@@ -104,11 +104,7 @@ local function AskQuestion()
 		questionObject.text = randomNumber3 .. " x " .. randomNumber4 .. " = "
 	
 	elseif ( randomOperator == 4 )then
-<<<<<<< HEAD
-		randomNumber5 = randomNumber5 - (randomNumber5 % randomNumber6 )
-=======
 		randomNumber5 = randomNumber5 - (randomNumber5 % randomNumber6)
->>>>>>> 56a58f06216c81eafadbd31e10a09f132b3afd20
 		correctAnswer = randomNumber5 / randomNumber6
 		questionObject.text = randomNumber5 .. " ÷ " .. randomNumber6 .. " = "
 
