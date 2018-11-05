@@ -38,6 +38,10 @@ local numericField
 
 local randomNumber1
 local randomNumber2
+local randomNumber3
+local randomNumber4
+local randomNumber5
+local randomNumber6
 local userAnswer
 local correctAnswer
 local randomOperator
@@ -88,6 +92,7 @@ local function AskQuestion()
 		questionObject.text = randomNumber3 .. " x " .. randomNumber4 .. " = "
 	
 	elseif ( randomOperator == 4 )then
+		randomNumber5 = randomNumber5 - (randomNumber5 % randomNumber6 )
 		correctAnswer = randomNumber5 / randomNumber6
 		questionObject.text = randomNumber5 .. " ÷ " .. randomNumber6 .. " = "
 
