@@ -22,7 +22,7 @@ local secondsLeft = 10
 local clockText
 local countDownTimer
 
-local lives = 4 
+local lives = 3
 local heart1
 local heart2
 local heart3
@@ -45,6 +45,7 @@ local randomNumber6
 local userAnswer
 local correctAnswer
 local randomOperator
+local correctAnswerObject = correctAnswer
 
 local youWin  
 
@@ -57,9 +58,20 @@ local gameOver
 local wrongSound = audio.loadSound("Sounds/wrong.mp3")
 local wrongSoundChannel
 
+-- end of game sound
+local endGame = audio.loadSound("Sounds/endGame.mp3")
+local endGameChannel
+
 -- you win sound
 local youWinSound = audio.loadSound("Sounds/youWin.mp3")
 local youWinSoundChannel
+
+--correct sound
+
+local correctSound = audio.loadSound("Sounds/correct.mp3")
+local correctSoundChannel
+
+
 ----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS 
 ----------------------------------------------------------------------------------------
@@ -92,13 +104,16 @@ local function AskQuestion()
 		questionObject.text = randomNumber3 .. " x " .. randomNumber4 .. " = "
 	
 	elseif ( randomOperator == 4 )then
+<<<<<<< HEAD
 		randomNumber5 = randomNumber5 - (randomNumber5 % randomNumber6 )
+=======
+		randomNumber5 = randomNumber5 - (randomNumber5 % randomNumber6)
+>>>>>>> 56a58f06216c81eafadbd31e10a09f132b3afd20
 		correctAnswer = randomNumber5 / randomNumber6
 		questionObject.text = randomNumber5 .. " ÷ " .. randomNumber6 .. " = "
 
 	end
 end
-
 
 local function UpdateLives()
 	--
@@ -109,23 +124,32 @@ local function UpdateLives()
 	elseif(lives == 0)then
 		heart1.isVisible = false
 		gameOver.isVisible = true
+		correctAnswerObject.isVisible = false
 		numericField.isVisible = false
 		questionObject.isVisible = false
 		clockText.isVisible = false
 		pointsObject.isVisible = false
 		youWin.isVisible = false
+
+		endGameChannel = audio.play(endGame)
 	end
 end
 
-
+-- hide correct
 local function HideCorrect()
 	correctObject.isVisible = false
 	AskQuestion()
 end
 
+--hide correct
 local function HideIncorrect()
 	incorrectObject.isVisible = false 
 	AskQuestion()
+end
+
+-- hide correct answer
+local function HideAnswer()
+	correctAnswerObject.isVisible = false
 end
 
 local function UpdateTime()
@@ -144,6 +168,8 @@ local function UpdateTime()
 		UpdateTime()
 		-- call the function to update lives
 		UpdateLives()
+
+		AskQuestion()
 	end
 end
 
@@ -173,6 +199,8 @@ local function NumericFieldListener ( event )
 			incorrectObject.isVisible = false
 			correctSoundChannel = audio.play(correctSound)
 			startingPoints = startingPoints + 1
+			correctSoundChannel = audio.play(correctSound)
+			secondsLeft = totalSeconds
 
 			timer.performWithDelay(1000, HideCorrect)
 
@@ -186,6 +214,7 @@ local function NumericFieldListener ( event )
 				questionObject.isVisible = false
 				clockText.isVisible = false
 				pointsObject.isVisible = false
+				correctAnswerObject.isVisible = false
 
 				youWinSoundChannel = audio.play(youWinSound)
 			end
@@ -203,7 +232,15 @@ local function NumericFieldListener ( event )
 		
 			timer.performWithDelay(1000, HideIncorrect)
 
+			-- wrong sound s played
 			wrongSoundChannel = audio.play(wrongSound)
+
+			-- show correct answer
+			correctAnswerObject = display.newText( "Correct answer was : " .. correctAnswer , display.contentWidth/2, display.contentHeight*3/4, Arial, 50)
+			correctAnswerObject:setTextColor(255/255, 255/255, 255/255)
+
+			timer.performWithDelay(1000, HideAnswer)
+
 		end
 		event.target.text = ""
 		
