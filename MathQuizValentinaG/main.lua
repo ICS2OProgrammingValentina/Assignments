@@ -45,8 +45,6 @@ local randomNumber6
 local userAnswer
 local correctAnswer
 local randomOperator
-local correctAnswerObject = correctAnswer
-
 local youWin  
 
 local gameOver
@@ -120,7 +118,6 @@ local function UpdateLives()
 	elseif(lives == 0)then
 		heart1.isVisible = false
 		gameOver.isVisible = true
-		correctAnswerObject.isVisible = false
 		numericField.isVisible = false
 		questionObject.isVisible = false
 		clockText.isVisible = false
@@ -141,11 +138,6 @@ end
 local function HideIncorrect()
 	incorrectObject.isVisible = false 
 	AskQuestion()
-end
-
--- hide correct answer
-local function HideAnswer()
-	correctAnswerObject.isVisible = false
 end
 
 local function UpdateTime()
@@ -232,11 +224,7 @@ local function NumericFieldListener ( event )
 			wrongSoundChannel = audio.play(wrongSound)
 
 			-- show correct answer
-			correctAnswerObject = display.newText( "Correct answer was : " .. correctAnswer , display.contentWidth/2, display.contentHeight*3/4, Arial, 50)
-			correctAnswerObject:setTextColor(255/255, 255/255, 255/255)
-
-			timer.performWithDelay(1000, HideAnswer)
-
+			incorrectObject.text = " the correct answer was " ..correctAnswer
 		end
 		event.target.text = ""
 		
@@ -295,14 +283,13 @@ gameOver.isVisible = false
 gameOver.x = 515
 gameOver.y = 400
 
+
+
 -- disply You Win
 youWin = display.newImageRect("Images/YouWin.png", 1350, 900)
 youWin.isVisible = false
 youWin.x = 515
 youWin.y = 400
-
-
-
 ----------------------------------------------------------------------------------------
 -- FUNCTION CALLS
 ----------------------------------------------------------------------------------------------
