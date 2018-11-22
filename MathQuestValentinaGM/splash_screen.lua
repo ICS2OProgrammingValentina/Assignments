@@ -6,6 +6,8 @@
 -- Description: This is the splash screen of the game. It displays the 
 -- company logo that...
 -----------------------------------------------------------------------------------------
+-- remove status bar
+display.setStatusBar(display.HiddenStatusBar) 
 
 -- Use Composer Library
 local composer = require( "composer" )
@@ -21,7 +23,7 @@ local scene = composer.newScene( sceneName )
 ----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
-local scrollspeed = 14
+local scrollspeed = 7
 -- The local variables for this scene
 local sword = display.newImageRect("Images/CompanyLogoValentina@2x.png", 1100, 800)
 
