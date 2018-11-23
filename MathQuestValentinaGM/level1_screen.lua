@@ -32,6 +32,14 @@ local scene = composer.newScene( sceneName )
 local bkg_image
 
 -----------------------------------------------------------------------------------------
+-- LOCAL FUNCTIONS
+-----------------------------------------------------------------------------------------
+
+-- Creating Transition Function to Main menu Page
+local function BackTransition( )       
+    composer.gotoScene( "main_menu", {effect = "flipFadeOutIn", time = 500})
+end 
+-----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
 
@@ -54,7 +62,30 @@ function scene:create( event )
     bkg_image:toBack()
 
         -- Insert background image into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( bkg_image )    
+    sceneGroup:insert( bkg_image )  
+          -----------------------------------------------------------------------------------------
+    -- BUTTON WIDGETS
+    -----------------------------------------------------------------------------------------   
+
+    -- Creating Instructoins Button
+    backButton = widget.newButton( 
+        {   
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth*1/6,
+            y = display.contentHeight*7/8,
+            -- Insert the images here
+            defaultFile = "Images/BackButtonUnpressedFinnL.png",
+            overFile = "Images/BackButtonPressedFinnL.png",
+
+            width = 175,
+            height = 175,
+
+            -- When the button is released, call the instructions screen transition function
+            onRelease = BackTransition          
+        } ) 
+
+     -- Associating button widgets with this scene
+    sceneGroup:insert( backButton )  
 
 end --function scene:create( event )
 
