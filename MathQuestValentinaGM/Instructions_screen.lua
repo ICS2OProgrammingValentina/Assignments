@@ -36,7 +36,7 @@ local bkg_image
 
 -- Creating Transition Function to Main menu Page
 local function BackTransition( )       
-    composer.gotoScene( "main_menu", {effect = "flipFadeOutIn", time = 500})
+    composer.gotoScene( "main_menu", {effect = "slideDown", time = 500})
 end 
 
 -----------------------------------------------------------------------------------------
