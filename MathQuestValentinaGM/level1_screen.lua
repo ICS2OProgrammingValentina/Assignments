@@ -31,6 +31,10 @@ local scene = composer.newScene( sceneName )
 -- The local variables for this scene
 local bkg_image
 
+-- background music
+local bkgSound = audio.loadSound("Sounds/background_music.mp3")
+local bkgSoundChannel
+
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -112,6 +116,9 @@ function scene:show( event )
         -- Example: start timers, begin animation, play audio, etc.
 
     end
+
+    -- background music
+    bkgSoundChannel = audio.play(bkgSound)
 
 end --function scene:show( event )
 

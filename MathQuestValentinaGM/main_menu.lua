@@ -1,8 +1,8 @@
 -----------------------------------------------------------------------------------------
 --
 -- main_menu.lua
--- Created by: Your Name
--- Date: Month Day, Year
+-- Created by: Valentina G Melendez
+-- Date: 26 November, 2018
 -- Description: This is the main menu, displaying the credits, instructions & play buttons.
 -----------------------------------------------------------------------------------------
 -- remove status bar
@@ -36,6 +36,10 @@ local scene = composer.newScene( sceneName )
 local bkg_image
 local playButton
 local creditsButton
+
+-- background music
+local bkgSound = audio.loadSound("Sounds/background_music.mp3")
+local bkgSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -77,7 +81,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- set the background colour
-    bkg_image = display.newImageRect("Images/main_menu.png", display.contentWidth, display.contentHeight)
+    bkg_image = display.newImageRect("Images/bkg_forest.jpg", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -190,6 +194,9 @@ function scene:show( event )
         
 
     end
+
+    -- background music
+    bkgSoundChannel = audio.play(bkgSound)
 
 end -- function scene:show( event )
 

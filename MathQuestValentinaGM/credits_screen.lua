@@ -1,7 +1,7 @@
 -----------------------------------------------------------------------------------------
 --
 -- credits_screen.lua
--- Created by: Your Name
+-- Created by: Valetina G melendez
 -- Special thanks to Wal Wal for helping in the design of this framework.
 -- Date: Month Day, Year
 -- Description: This is the credits page, displaying a back button to the main menu.
@@ -28,6 +28,10 @@ scene = composer.newScene( sceneName ) -- This function doesn't accept a string,
 -----------------------------------------------------------------------------------------
 local bkg_image
 local backButton
+
+-- background music
+local bkgSound = audio.loadSound("Sounds/background_music.mp3")
+local bkgSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -121,6 +125,10 @@ function scene:show( event )
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
     end
+
+    
+    -- background music
+    bkgSoundChannel = audio.play(bkgSound)
 
 end -- function scene:show( event )
 
